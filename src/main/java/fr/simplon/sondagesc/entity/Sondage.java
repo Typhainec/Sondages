@@ -10,6 +10,9 @@ import java.time.LocalDate;
 @Table(name = "sondage")
 public class Sondage {
 
+
+
+
     /*
 une description (chaîne vide/blanche interdite, min 3 caractères et max 120 caractères)
 une question (max 120 car.)
@@ -17,6 +20,16 @@ une date de création (automatiquement remplie au jour actuel),
 une date de cloture (doit être après la date de création)
 le nom de la personne qui l'a proposé (chaine vide/blanche interdite, max 64 car.)
      */
+
+    public Sondage(String description, String question, LocalDate cloture, LocalDate creation, String personne) {
+        this.Description = description;
+        this.Question = question;
+        this.Creation = creation;
+        this.Cloture = cloture;
+        this.Personne = personne;
+    }
+
+    public Sondage() {}
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
