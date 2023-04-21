@@ -10,9 +10,6 @@ import java.time.LocalDate;
 @Table(name = "sondage")
 public class Sondage {
 
-
-
-
     /*
 une description (chaîne vide/blanche interdite, min 3 caractères et max 120 caractères)
 une question (max 120 car.)

@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootTest
 public class TestPutSondage {
     private RestTemplate restTemplate = new RestTemplate();
-    private Long id = 1L;
+    private Long id = 10L;
     private Sondage sondage = new Sondage();
 
     @Test
@@ -19,5 +19,6 @@ public class TestPutSondage {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Sondage> request = new HttpEntity<>(sondage, headers);
         ResponseEntity<Sondage> response = restTemplate.exchange(url, HttpMethod.PUT, request, Sondage.class, id);
+
     }
 }

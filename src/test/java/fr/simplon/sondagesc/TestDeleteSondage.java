@@ -13,7 +13,7 @@ public class TestDeleteSondage {
     @Test
     void TestDeleteSondage() {
         this.restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/rest/sondage/delete/{id}";
+        String url = "http://localhost:8080/rest/sondage/{id}";
         Long id = 1L;
         restTemplate.delete(url, id);
     }

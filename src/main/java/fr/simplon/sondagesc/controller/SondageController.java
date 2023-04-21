@@ -23,25 +23,26 @@ public class SondageController {
     @GetMapping("/rest/sondage/{id}") //Permet d'afficher un sondage en particulier.
     public Sondage getSondageById(@PathVariable Long id){return repo.findById(id).orElse(null);}
 
-    @PostMapping("/rest/sondage/save") //Permet d'enregistrer un nouveau sondage
+    @PostMapping("/rest/sondage") //Permet d'enregistrer un nouveau sondage
     public List<Sondage> saveSondage(@RequestBody Sondage sondage) {
         repo.save(sondage);
         return repo.findAll();
     }
 
-    @PutMapping("/rest/sondage/update/{id}") //Permet de mettre à jour un sondage
+    @PutMapping("/rest/sondage/{id}") //Permet de mettre à jour un sondage
     public Sondage updateSondage(@PathVariable Long id, @RequestBody Sondage updateSondage){
         Sondage sondage = repo.findById(id).orElse(null);
-        if (sondage == null){
+        if (sondage != null){
             sondage.setDescription(updateSondage.getDescription());
             sondage.setQuestion(updateSondage.getQuestion());
             sondage.setCreation(updateSondage.getCreation());
             sondage.setCloture(updateSondage.getCloture());
             sondage.setPersonne(updateSondage.getPersonne());
         }
-        return sondage;
+        return repo.save(sondage);
     }
-    @DeleteMapping("/rest/sondage/delete/{id}") // Permet de supprimer un sondage
+
+    @DeleteMapping("/rest/sondage/{id}") // Permet de supprimer un sondage
     public ResponseEntity<String> deleeteSondage(@PathVariable Long id){
         repo.deleteById(id);
         return ResponseEntity.ok("Le sondage " + id + " a bien été supprimé");
