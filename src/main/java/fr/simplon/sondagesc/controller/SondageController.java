@@ -4,6 +4,7 @@ import fr.simplon.sondagesc.dao.SondageRepository;
 import fr.simplon.sondagesc.entity.Sondage;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class SondageController {
     }
 
     @PutMapping("/rest/sondage/{id}") //Permet de mettre à jour un sondage
-    public Sondage updateSondage(@PathVariable Long id, @RequestBody Sondage updateSondage){
+    public Sondage updateSondage(@PathVariable Long id, @NonNull @RequestBody Sondage updateSondage){
         Sondage sondage = repo.findById(id).orElse(null);
         if (sondage != null){
             sondage.setDescription(updateSondage.getDescription());
@@ -39,6 +40,7 @@ public class SondageController {
             sondage.setCloture(updateSondage.getCloture());
             sondage.setPersonne(updateSondage.getPersonne());
         }
+        assert sondage != null;
         return repo.save(sondage);
     }
 
